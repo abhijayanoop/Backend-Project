@@ -4,6 +4,7 @@ const { body } = require("express-validator");
 const router = express.Router();
 
 const feedController = require("../controllers/feed");
+const authController = require("../controllers/auth");
 const isAuth = require("../middleware/is-auth");
 
 router.get("/posts", isAuth, feedController.getPosts);
@@ -31,5 +32,14 @@ router.put(
 );
 
 router.delete("/post/:postId", isAuth, feedController.deletePost);
+
+router.get("/status", isAuth, authController.getStatus);
+
+router.put(
+  "/status",
+  isAuth,
+  [body("status").trim().not().isEmpty()],
+  authController.updateStatus
+);
 
 module.exports = router;
