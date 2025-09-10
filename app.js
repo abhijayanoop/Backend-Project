@@ -23,7 +23,7 @@ const fileFilter = (req, file, cb) => {
   if (
     file.mimetype === "image/png" ||
     file.mimetype === "image/jpg" ||
-    file.mimetype === "img/jpeg"
+    file.mimetype === "image/jpeg"
   ) {
     cb(null, true);
   } else {
